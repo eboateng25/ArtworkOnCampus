@@ -62,5 +62,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Artwork On Campus is needed to show your location on the map.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Artwork On Campus is needed to show your location on the map.</string>
 </dict>
 </plist>
