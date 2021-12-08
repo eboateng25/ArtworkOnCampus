@@ -13,7 +13,7 @@
 		465DFD1D275FB45E00EEE8B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 465DFD1B275FB45E00EEE8B3 /* Main.storyboard */; };
 		465DFD1F275FB46800EEE8B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 465DFD1E275FB46800EEE8B3 /* Assets.xcassets */; };
 		465DFD22275FB46800EEE8B3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 465DFD20275FB46800EEE8B3 /* LaunchScreen.storyboard */; };
-		465DFD2B275FC0CE00EEE8B3 /* UoL campus walk.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 465DFD2A275FC0CE00EEE8B3 /* UoL campus walk.gpx */; };
+		5251FFDE27616C7E0010CA5F /* UoL campus walk.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 5251FFDD27616C7E0010CA5F /* UoL campus walk.gpx */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +25,7 @@
 		465DFD1E275FB46800EEE8B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		465DFD21275FB46800EEE8B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		465DFD23275FB46800EEE8B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		465DFD2A275FC0CE00EEE8B3 /* UoL campus walk.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "UoL campus walk.gpx"; path = "../../../Downloads/UoL campus walk.gpx"; sourceTree = "<group>"; };
+		5251FFDD27616C7E0010CA5F /* UoL campus walk.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "UoL campus walk.gpx"; path = "../../../Downloads/UoL campus walk.gpx"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,10 +62,10 @@
 				465DFD17275FB45E00EEE8B3 /* SceneDelegate.swift */,
 				465DFD19275FB45E00EEE8B3 /* ViewController.swift */,
 				465DFD1B275FB45E00EEE8B3 /* Main.storyboard */,
-				465DFD2A275FC0CE00EEE8B3 /* UoL campus walk.gpx */,
 				465DFD1E275FB46800EEE8B3 /* Assets.xcassets */,
 				465DFD20275FB46800EEE8B3 /* LaunchScreen.storyboard */,
 				465DFD23275FB46800EEE8B3 /* Info.plist */,
+				5251FFDD27616C7E0010CA5F /* UoL campus walk.gpx */,
 			);
 			path = ArtworkOnCampus;
 			sourceTree = "<group>";
@@ -127,7 +127,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				465DFD2B275FC0CE00EEE8B3 /* UoL campus walk.gpx in Resources */,
+				5251FFDE27616C7E0010CA5F /* UoL campus walk.gpx in Resources */,
 				465DFD22275FB46800EEE8B3 /* LaunchScreen.storyboard in Resources */,
 				465DFD1F275FB46800EEE8B3 /* Assets.xcassets in Resources */,
 				465DFD1D275FB45E00EEE8B3 /* Main.storyboard in Resources */,

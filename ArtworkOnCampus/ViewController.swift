@@ -61,7 +61,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
-    func fetchCampusArt(url: String) {
+    func fetchCampusArt(url: String) -> campusarts {
+        //var campusartList : campusarts
         if let url = URL(string: url) {
               let session = URLSession.shared
                 session.dataTask(with: url) { (data, response, err) in
@@ -70,16 +71,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                   }
                   do {
                       let decoder = JSONDecoder()
-                      let campusartList = try decoder.decode(campusarts.self, from: jsonData)
+                      var campusartList : campusarts = try decoder.decode(campusarts.self, from: jsonData)
                       var count = 0
-                      for campusart in campusartList.campusarts {
+                      for campusart in campusartList.campusart {
                           count += 1
                           print("\(count) " + campusart.title) }
+                      return campusartList
                   } catch let jsonErr {
                       print("Error decoding JSON", jsonErr)
                   }
               }.resume()
            }
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -141,6 +144,6 @@ struct campusart: Decodable {
     let enabled: String
 }
 struct campusarts: Decodable {
-    let campusarts: [campusart]
+    let campusart: [campusart]
 }
 
