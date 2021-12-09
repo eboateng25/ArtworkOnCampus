@@ -25,6 +25,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell")!
         
+        
+        
         return cell
     }
     
@@ -71,10 +73,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
         }
         
-        
-        
-        //let artworkLocations = [ArtworkLocation(name: "Electrical Engineering and Electronics",lat: 53.406231,long: -2.965867)]
-        
         for artworkLocation in artworkLocations {
             let annotations = MKPointAnnotation()
             annotations.title = artworkLocation.name
@@ -95,11 +93,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                       let decoder = JSONDecoder()
                       let campusartList = try decoder.decode(campusarts.self, from: jsonData)
                       self.campusartList = campusartList
-                      var count = 0
                       DispatchQueue.main.async {
-                          for campusart in campusartList.campusart {
-                              count += 1
-                              print("\(count) " + campusart.title) }
                           self.updateData()
                       }
                   } catch let jsonErr {
