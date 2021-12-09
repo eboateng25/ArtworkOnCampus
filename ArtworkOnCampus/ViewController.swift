@@ -17,16 +17,32 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var startTrackingTheUser = false
     
     var campusartList : campusarts? = nil
+    var locations : [String : [campusart]] = [:]
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return self.locations.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection
+                    section: Int) -> String? {
+        if(self.locations.count != 0){
+            return Array(self.locations.keys)[section]
+        }
+        else {return ""}
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1;
+        return self.locations[Array(self.locations.keys)[section]]!.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell")!
-        
-        
-        
+        dump(indexPath.section)
+        let campusArtWork = locations[Array(self.locations.keys)[indexPath.section]]![indexPath.row]
+        let location = campusArtWork.title
+        let locationDescription = campusArtWork.locationNotes
+        cell.textLabel?.text = location
+        //cell.textLabel?.description = locationDescription
         return cell
     }
     
@@ -34,6 +50,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var myMap: MKMapView!
     
     @IBOutlet weak var myTable: UITableView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +60,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         // Update map and table
         updateData()
-                
+        
         // Get User's Location
         locationManager.delegate = self as CLLocationManagerDelegate
         locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
@@ -56,7 +73,32 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // Map out locations on map
         addMapAnnotations(map: myMap, campusarts: campusartList)
         
+        // Update the different locations available
+        self.locations = updateLocations(campusarts: campusartList)
+        
+        // Update table
+        myTable.reloadData()
+        
         print("UPDATING...")
+    }
+    
+    func updateLocations(campusarts: campusarts?) -> [String : [campusart]]{
+        var locations : [String : [campusart]] = [:]
+        if(campusarts != nil){
+            for i in 0...(campusarts?.campusart.count)! - 1 {
+                let location : String = (campusarts?.campusart[i].location)!
+                var campusartsInLocation : [campusart] = []
+                //if (locations[location] == nil){ // avoid updating dictionary if location already exists
+                    for j in 0...(campusarts?.campusart.count)! - 1 {
+                        if campusarts?.campusart[j].location ==  location{
+                            campusartsInLocation.append((campusarts?.campusart[j])!)
+                        }
+                    }
+                //}
+                locations[location] = campusartsInLocation
+            }
+        }
+        return locations
     }
     
     func addMapAnnotations(map: MKMapView!, campusarts: campusarts?){
@@ -84,23 +126,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func fetchCampusArt(url: String) {
         if let url = URL(string: url) {
-              let session = URLSession.shared
-                session.dataTask(with: url) { (data, response, err) in
-                  guard let jsonData = data else {
-                      return
-                  }
-                  do {
-                      let decoder = JSONDecoder()
-                      let campusartList = try decoder.decode(campusarts.self, from: jsonData)
-                      self.campusartList = campusartList
-                      DispatchQueue.main.async {
-                          self.updateData()
-                      }
-                  } catch let jsonErr {
-                      print("Error decoding JSON", jsonErr)
-                  }
-                }.resume()
-           }
+            let session = URLSession.shared
+            session.dataTask(with: url) { (data, response, err) in
+                guard let jsonData = data else {
+                    return
+                }
+                do {
+                    let decoder = JSONDecoder()
+                    let campusartList = try decoder.decode(campusarts.self, from: jsonData)
+                    self.campusartList = campusartList
+                    DispatchQueue.main.async {
+                        self.updateData()
+                    }
+                } catch let jsonErr {
+                    print("Error decoding JSON", jsonErr)
+                }
+            }.resume()
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
