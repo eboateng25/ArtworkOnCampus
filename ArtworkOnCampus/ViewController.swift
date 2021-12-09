@@ -16,6 +16,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var firstRun = true
     var startTrackingTheUser = false
     
+    var campusartList : campusarts? = nil
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1;
@@ -38,9 +39,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // Fetch campus art work
         fetchCampusArt(url: "https://cgi.csc.liv.ac.uk/~phil/Teaching/COMP228/artworksOnCampus/data.php?class=campusart&lastModified=2017-12-01")
         
-        // Map out locations on map
-        addMapAnnotations(map: myMap)
-        
+        // Update map and table
+        updateData()
+                
         // Get User's Location
         locationManager.delegate = self as CLLocationManagerDelegate
         locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
@@ -49,8 +50,30 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         myMap.showsUserLocation = true
     }
     
-    func addMapAnnotations(map: MKMapView!){
-        let artworkLocations = [ArtworkLocation(name: "Electrical Engineering and Electronics",lat: 53.406231,long: -2.965867)]
+    func updateData(){
+        // Map out locations on map
+        addMapAnnotations(map: myMap, campusarts: campusartList)
+        
+        print("UPDATING...")
+    }
+    
+    func addMapAnnotations(map: MKMapView!, campusarts: campusarts?){
+        var artworkLocations : [ArtworkLocation] = []
+        if(campusarts != nil){
+            for i in 0...(campusarts?.campusart.count)! - 1 {
+                let location : String = (campusarts?.campusart[i].location)!
+                let lat : Double =  Double((campusarts?.campusart[i].lat)!)!
+                let long: Double = Double((campusarts?.campusart[i].long)!)!
+                let artworklocation = ArtworkLocation(name: location, lat: lat, long: long)
+                
+                artworkLocations.append(artworklocation)
+                
+            }
+        }
+        
+        
+        
+        //let artworkLocations = [ArtworkLocation(name: "Electrical Engineering and Electronics",lat: 53.406231,long: -2.965867)]
         
         for artworkLocation in artworkLocations {
             let annotations = MKPointAnnotation()
@@ -61,8 +84,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
-    func fetchCampusArt(url: String) -> campusarts {
-        //var campusartList : campusarts
+    func fetchCampusArt(url: String) {
         if let url = URL(string: url) {
               let session = URLSession.shared
                 session.dataTask(with: url) { (data, response, err) in
@@ -71,18 +93,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                   }
                   do {
                       let decoder = JSONDecoder()
-                      var campusartList : campusarts = try decoder.decode(campusarts.self, from: jsonData)
+                      let campusartList = try decoder.decode(campusarts.self, from: jsonData)
+                      self.campusartList = campusartList
                       var count = 0
-                      for campusart in campusartList.campusart {
-                          count += 1
-                          print("\(count) " + campusart.title) }
-                      return campusartList
+                      DispatchQueue.main.async {
+                          for campusart in campusartList.campusart {
+                              count += 1
+                              print("\(count) " + campusart.title) }
+                          self.updateData()
+                      }
                   } catch let jsonErr {
                       print("Error decoding JSON", jsonErr)
                   }
-              }.resume()
+                }.resume()
            }
-        
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
