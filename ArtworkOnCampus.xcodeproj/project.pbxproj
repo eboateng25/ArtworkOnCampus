@@ -13,6 +13,8 @@
 		465DFD1D275FB45E00EEE8B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 465DFD1B275FB45E00EEE8B3 /* Main.storyboard */; };
 		465DFD1F275FB46800EEE8B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 465DFD1E275FB46800EEE8B3 /* Assets.xcassets */; };
 		465DFD22275FB46800EEE8B3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 465DFD20275FB46800EEE8B3 /* LaunchScreen.storyboard */; };
+		46721D4827637E73002B967A /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46721D4727637E73002B967A /* CustomTableViewCell.swift */; };
+		46BB622B276362AB00D6B67C /* ArtDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BB622A276362AB00D6B67C /* ArtDetailsController.swift */; };
 		46DB736C2762578800CA2EC7 /* UoL campus walk.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 46DB736B2762578800CA2EC7 /* UoL campus walk.gpx */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +27,8 @@
 		465DFD1E275FB46800EEE8B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		465DFD21275FB46800EEE8B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		465DFD23275FB46800EEE8B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		46721D4727637E73002B967A /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		46BB622A276362AB00D6B67C /* ArtDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtDetailsController.swift; sourceTree = "<group>"; };
 		46DB736B2762578800CA2EC7 /* UoL campus walk.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "UoL campus walk.gpx"; path = "../../../Downloads/UoL campus walk.gpx"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -61,6 +65,8 @@
 				465DFD15275FB45E00EEE8B3 /* AppDelegate.swift */,
 				465DFD17275FB45E00EEE8B3 /* SceneDelegate.swift */,
 				465DFD19275FB45E00EEE8B3 /* ViewController.swift */,
+				46721D4727637E73002B967A /* CustomTableViewCell.swift */,
+				46BB622A276362AB00D6B67C /* ArtDetailsController.swift */,
 				465DFD1B275FB45E00EEE8B3 /* Main.storyboard */,
 				465DFD1E275FB46800EEE8B3 /* Assets.xcassets */,
 				465DFD20275FB46800EEE8B3 /* LaunchScreen.storyboard */,
@@ -142,7 +148,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				465DFD1A275FB45E00EEE8B3 /* ViewController.swift in Sources */,
+				46721D4827637E73002B967A /* CustomTableViewCell.swift in Sources */,
 				465DFD16275FB45E00EEE8B3 /* AppDelegate.swift in Sources */,
+				46BB622B276362AB00D6B67C /* ArtDetailsController.swift in Sources */,
 				465DFD18275FB45E00EEE8B3 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
